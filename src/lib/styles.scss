@@ -1,0 +1,66 @@
+
+$background: darkslategray;
+$background-lighter: rgb(60, 100, 100);
+$background-darker: rgb(34, 58, 58);
+
+$foreground: #ddd;
+$foreground-lighter: #eee;
+$white: #fff;
+
+$logo-red: #ff3131;
+$logo-crimson: #7b2929;
+$logo-crimson-lighter: #ac3939;
+$logo-pink: #f88c84;
+$logo-brown: #b17d73;
+
+$link: rgb(177, 236, 177);
+$link-hover: aquamarine;
+
+@mixin flexy($direction, $gap: 0) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    gap: $gap;
+}
+
+
+:global(form) {
+    @include flexy(row, 0.5rem);
+    justify-content: center;
+    background-color: $background-darker;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 8px;
+
+    input, textarea {
+      margin: 0;
+      outline: none;
+      border-radius: 8px;
+      padding: 0.3rem;
+      font-size: 1.2rem;
+      border: none;
+      background-color: $foreground;
+    }
+
+    textarea {
+      min-height: 8ch;
+      padding: 1rem;
+    }
+
+    select {
+      outline: none;
+    }
+
+    button {
+      font-size: 1rem;
+      padding: 0.45rem;
+      outline: none;
+      background-color: $foreground;
+      border-radius: 8px;
+      border: none;
+    }
+  }
+
+// * {
+//     border: 1px solid red;
+// }

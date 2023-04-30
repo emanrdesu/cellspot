@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Phone {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  views       Int       @default(0)
+  name        String
+  brand       String
+  condition   Condition @default(NUEVO)
+  price       Price[]
+  images      Image[]
+  specs       Spec[]
+  description String?   @db.VarChar(2000)
+}
+
+model Image {
+  id       Int    @id @default(autoincrement())
+  filename String
+  bytes    Bytes
+  phone    Phone? @relation(fields: [phoneID], references: [id])
+  phoneID  Int
+}
+
+model Price {
+  id      Int    @id @default(autoincrement())
+  amount  Float
+  unit    Unit   @default(USD)
+  phone   Phone? @relation(fields: [phoneID], references: [id])
+  phoneID Int?
+}
+
+model Spec {
+  id      Int     @id @default(autoincrement())
+  Phone   Phone?  @relation(fields: [phoneID], references: [id])
+  phoneID Int?
+  name    String
+  value   String?
+}
+
+enum Unit {
+  USD
+  EUR
+  MLC
+  MN
+}
+
+enum Condition {
+  NUEVO
+  USADO
+  TRASTE
+}
+
+model Password {
+  id       Int    @id
+  password String
+}
+
+model QA {
+  id       Int    @id @default(autoincrement())
+  question String
+  answer   String @db.VarChar(2000)
+}
