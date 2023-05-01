@@ -16,7 +16,8 @@ export const GET = async({params, setHeaders}) => {
         })
 
         setHeaders({
-            'content-type': `image/${extension}`
+            'content-type': `image/${extension}`,
+            'cache-control': 'max-age=86400'
         })
 
         return new Response(image?.bytes);

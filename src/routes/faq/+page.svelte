@@ -4,8 +4,6 @@
     import Editable from '$lib/Editable.svelte'
     import { writable } from 'svelte/store'
     import { setContext } from 'svelte'
-    import MdAdd from 'svelte-icons/md/MdAdd.svelte'
-    import MdPlusOne from 'svelte-icons/md/MdPlusOne.svelte'
     export let data;
 
     const modalShow = writable(true)
